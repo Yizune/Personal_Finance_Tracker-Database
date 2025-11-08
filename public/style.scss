@@ -1,0 +1,774 @@
+$primary-color: hsl(200, 95%, 40%);
+$primary-light: hsl(200, 95%, 50%);
+$accent-color: hsl(160, 60%, 50%);
+
+$income-color: hsl(160, 84%, 39%);
+$income-light: hsl(160, 70%, 94%);
+$expense-color: hsl(0, 85%, 60%);
+$expense-light: hsl(0, 70%, 96%);
+$balance-color: hsl(220, 90%, 56%);
+$balance-light: hsl(220, 70%, 95%);
+
+$background-light: hsl(210, 20%, 98%);
+$background-dark: hsl(215, 28%, 10%);
+$card-light: hsl(0, 0%, 100%);
+$card-dark: hsl(215, 25%, 14%);
+
+$foreground-light: hsl(215, 25%, 12%);
+$foreground-dark: hsl(210, 20%, 95%);
+
+$border-light: hsl(214, 20%, 88%);
+$border-dark: hsl(215, 20%, 22%);
+
+$muted-foreground-light: hsl(215, 15%, 45%);
+$muted-foreground-dark: hsl(215, 15%, 65%);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background-color: $background-light;
+  color: $foreground-light;
+  line-height: 1.6;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Dark Mode
+.darkmode {
+  background: $background-dark;
+  color: $foreground-dark;
+
+  .header {
+    background: rgba($card-dark, 0.5);
+    border-bottom: 1px solid $border-dark;
+    
+    .header-text h1 {
+      background: linear-gradient(to right, $primary-light, $accent-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mode-icon #theme-switch {
+      background-color: $card-dark;
+      border: 1px solid $border-dark;
+
+      &:hover {
+        background-color: $foreground-dark;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        transform: scale(1.1);
+
+        svg {
+          fill: $background-dark;
+        }
+      }
+
+      svg {
+        fill: $foreground-dark;
+
+        &:first-child {
+          display: none;
+        }
+
+        &:last-child {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  .cards {
+    .income {
+      background: linear-gradient(to bottom, $card-dark, rgba($income-color, 0.15));
+      border-color: rgba($income-color, 0.3);
+      
+      h4 {
+        color: lighten($income-color, 10%);
+      }
+      
+      p {
+        color: lighten($income-color, 10%);
+      }
+    }
+    
+    .expenses {
+      background: linear-gradient(to bottom, $card-dark, rgba($expense-color, 0.15));
+      border-color: rgba($expense-color, 0.3);
+      
+      h4 {
+        color: lighten($expense-color, 10%);
+      }
+      
+      p {
+        color: lighten($expense-color, 10%);
+      }
+    }
+    
+    .balance {
+      background: linear-gradient(to bottom, $card-dark, rgba($balance-color, 0.15));
+      border-color: rgba($balance-color, 0.3);
+      
+      h4 {
+        color: lighten($balance-color, 10%);
+      }
+      
+      p {
+        color: lighten($balance-color, 10%);
+      }
+    }
+  }
+
+  .filters {
+    .search-filter .input-wrapper {
+      .input {
+        background-color: $card-dark;
+        border-color: $border-dark;
+        color: $foreground-dark;
+      }
+
+      .search-icon {
+        filter: invert(0);
+      }
+    }
+
+    .category-filter select {
+      background-color: $card-dark;
+      border-color: $border-dark;
+      color: $foreground-dark;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    }
+  }
+
+  .tableOne #transactionsTable {
+    thead {
+      background-color: $card-dark;
+      border-bottom: 1px solid $border-dark;
+    }
+
+    tbody {
+      background-color: $card-dark;
+      
+      tr:hover {
+        background-color: rgba($primary-color, 0.15);
+      }
+    }
+
+    th, td {
+      color: $foreground-dark;
+      border-bottom-color: $border-dark;
+    }
+
+    .empty-state-cell {
+      .empty-content {
+        h3 {
+          color: $foreground-dark !important;
+        }
+
+        p {
+          color: $muted-foreground-dark;
+        }
+      }
+    }
+  }
+
+  .popup .popup-content {
+    background-color: $card-dark;
+    border-color: $border-dark;
+    color: $foreground-dark;
+
+    h2 {
+      color: #ffffff;
+    }
+
+    label {
+      color: #ffffff;
+    }
+
+    input, select, textarea {
+      background-color: $background-dark;
+      border-color: $border-dark;
+      color: $foreground-dark;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    }
+
+    .error-text {
+      color: hsl(0, 85%, 70%);
+    }
+
+    input.has-error, select.has-error {
+      border-color: hsl(0, 85%, 70%);
+      
+      &:focus {
+        border-color: hsl(0, 85%, 70%);
+        box-shadow: 0 0 0 3px rgba(hsl(0, 85%, 70%), 0.1);
+      }
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+  }
+}
+
+.container {
+  display: flex;
+}
+
+.header, .cards, .filters, .tableOne, .addRow, .chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 40px;
+}
+
+.header {
+  margin-bottom: 50px;
+  padding: 16px 40px;
+  background: rgba($card-light, 0.5);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $border-light;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .header-text h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(to right, $primary-color, $accent-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+
+  .mode-icon #theme-switch {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid $border-light;
+    background-color: $card-light;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      background-color: $foreground-light;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transform: scale(1.1);
+
+      svg {
+        fill: $background-light;
+      }
+    }
+
+    svg {
+      fill: $foreground-light;
+      height: 24px;
+      width: 24px;
+      transition: fill 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+}
+
+// Cards
+.cards {
+  gap: 24px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+
+  .card {
+    background-color: $card-light;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    min-width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid $border-light;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 500;
+      color: $muted-foreground-light;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      font-size: 32px;
+      font-weight: 700;
+    }
+  }
+
+  .income {
+    border-color: rgba($income-color, 0.2);
+    background: linear-gradient(to bottom, $card-light, $income-light);
+
+    h4 {
+      color: $income-color;
+    }
+
+    p {
+      color: $income-color;
+    }
+
+    &:hover {
+      border-color: rgba($income-color, 0.4);
+    }
+  }
+
+  .expenses {
+    border-color: rgba($expense-color, 0.2);
+    background: linear-gradient(to bottom, $card-light, $expense-light);
+
+    h4 {
+      color: $expense-color;
+    }
+
+    p {
+      color: $expense-color;
+    }
+
+    &:hover {
+      border-color: rgba($expense-color, 0.4);
+    }
+  }
+
+  .balance {
+    border-color: rgba($balance-color, 0.2);
+    background: linear-gradient(to bottom, $card-light, $balance-light);
+
+    h4 {
+      color: $balance-color;
+    }
+
+    p {
+      color: $balance-color;
+    }
+
+    &:hover {
+      border-color: rgba($balance-color, 0.4);
+    }
+  }
+}
+
+// Filters
+.filters {
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  .search-filter {
+    flex: 1;
+
+    .input-wrapper {
+      position: relative;
+      width: 100%;
+
+      .input {
+        width: 100%;
+        height: 44px;
+        padding-left: 40px;
+        border-radius: 8px;
+        border: 1px solid $border-light;
+        font-size: 14px;
+        background-color: $card-light;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        }
+
+        &::placeholder {
+          color: $muted-foreground-light;
+        }
+      }
+
+      .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        opacity: 0.5;
+        filter: invert(1);
+      }
+    }
+  }
+
+  .category-filter {
+    display: flex;
+    gap: 12px;
+
+    select {
+      min-width: 180px;
+      height: 44px;
+      border: 1px solid $border-light;
+      border-radius: 8px;
+      background-color: $card-light;
+      font-size: 14px;
+      padding: 0 36px 0 12px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+
+      &:hover {
+        border-color: $primary-color;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      }
+    }
+  }
+}
+
+.buttons {
+  margin-bottom: 32px;
+
+  .filter-buttons {
+    display: flex;
+    gap: 12px;
+
+    button {
+      height: 44px;
+      padding: 0 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover:not(.disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+
+    .clear button {
+      background-color: $card-light;
+      color: $foreground-light;
+      border: 1px solid $border-light;
+
+      &:hover:not(.disabled) {
+        background-color: $foreground-light;
+        color: $background-light;
+      }
+    }
+
+    .add-selected button {
+      background-color: $income-color;
+      color: white;
+
+      &:hover:not(.disabled) {
+        background-color: hsl(160, 84%, 45%);
+      }
+    }
+
+    .remove-selected button {
+      background-color: $expense-color;
+      color: white;
+
+      &:hover:not(.disabled) {
+        background-color: hsl(0, 85%, 65%);
+      }
+    }
+
+    .edit-selected button {
+      background-color: $balance-color;
+      color: white;
+
+      &:hover:not(.disabled) {
+        background-color: hsl(220, 90%, 60%);
+      }
+    }
+  }
+}
+
+.tableOne {
+  margin-bottom: 50px;
+
+  #transactionsTable {
+    width: 100%;
+    border-radius: 12px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background-color: $card-light;
+    border: 1px solid $border-light;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    .selected {
+      background-color: rgba($primary-color, 0.1) !important;
+    }
+
+    thead {
+      background-color: rgba($muted-foreground-light, 0.05);
+
+      th {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: $muted-foreground-light;
+      }
+    }
+
+    tbody {
+      background-color: $card-light;
+
+      tr {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgba($primary-color, 0.05);
+        }
+      }
+    }
+
+    th, td {
+      border-bottom: 1px solid $border-light;
+      text-align: left;
+      padding: 16px 12px;
+
+      &:first-child {
+        padding-left: 24px;
+      }
+
+      &:last-child {
+        padding-right: 24px;
+        border-right: none;
+      }
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .empty-state-row {
+      &:hover {
+        background-color: transparent !important;
+        cursor: default !important;
+      }
+
+      .empty-state-cell {
+        padding: 40px;
+        text-align: center;
+        border-bottom: none;
+
+        .empty-content {
+          h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: $foreground-light;
+            margin-bottom: 6px;
+          }
+
+          p {
+            font-size: 14px;
+            color: $muted-foreground-light;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.chart-wrapper {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+#chart-container {
+  width: 100%;
+  height: 700px;
+  background-color: $card-light;
+  border-radius: 12px;
+  padding: 0.1px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid $border-light;
+  overflow: hidden;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+
+  .popup-content {
+    background-color: $card-light;
+    margin: 0 auto;
+    padding: 32px;
+    border: 1px solid $border-light;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+
+    h2 {
+      margin-bottom: 24px;
+      color: $foreground-light;
+    }
+
+    .close {
+      color: $muted-foreground-light;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover,
+      &:focus {
+        color: $foreground-light;
+      }
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: $foreground-light;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid $border-light;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: $card-light;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      }
+    }
+
+    select {
+      padding: 10px 40px 10px 12px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    .error-text {
+      display: block;
+      color: $expense-color;
+      font-size: 12px;
+      min-height: 18px;
+      margin-bottom: 8px;
+    }
+
+    input.has-error, select.has-error {
+      border-color: $expense-color;
+      
+      &:focus {
+        border-color: $expense-color;
+        box-shadow: 0 0 0 3px rgba($expense-color, 0.1);
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+
+      button {
+        flex: 1;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:first-child {
+          background-color: $primary-color;
+          color: white;
+
+          &:hover {
+            background-color: $primary-light;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+          }
+        }
+
+        &:last-child {
+          background-color: hsl(215, 15%, 50%);
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: hsl(215, 15%, 40%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+#addTransactionForm,
+#editTransactionForm,
+#removeTransactionForm {
+  display: none;
+}

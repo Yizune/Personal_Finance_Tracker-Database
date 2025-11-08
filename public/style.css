@@ -1,0 +1,626 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  background-color: hsl(210, 20%, 98%);
+  color: hsl(215, 25%, 12%);
+  line-height: 1.6;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.darkmode {
+  background: hsl(215, 28%, 10%);
+  color: hsl(210, 20%, 95%);
+}
+.darkmode .header {
+  background: rgba(26.775, 34.2125, 44.625, 0.5);
+  border-bottom: 1px solid hsl(215, 20%, 22%);
+}
+.darkmode .header .header-text h1 {
+  background: linear-gradient(to right, hsl(200, 95%, 50%), hsl(160, 60%, 50%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.darkmode .header .mode-icon #theme-switch {
+  background-color: hsl(215, 25%, 14%);
+  border: 1px solid hsl(215, 20%, 22%);
+}
+.darkmode .header .mode-icon #theme-switch:hover {
+  background-color: hsl(210, 20%, 95%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+.darkmode .header .mode-icon #theme-switch:hover svg {
+  fill: hsl(215, 28%, 10%);
+}
+.darkmode .header .mode-icon #theme-switch svg {
+  fill: hsl(210, 20%, 95%);
+}
+.darkmode .header .mode-icon #theme-switch svg:first-child {
+  display: none;
+}
+.darkmode .header .mode-icon #theme-switch svg:last-child {
+  display: inline;
+}
+.darkmode .cards .income {
+  background: linear-gradient(to bottom, hsl(215, 25%, 14%), rgba(15.912, 182.988, 127.296, 0.15));
+  border-color: rgba(15.912, 182.988, 127.296, 0.3);
+}
+.darkmode .cards .income h4 {
+  color: hsl(160, 84%, 49%);
+}
+.darkmode .cards .income p {
+  color: hsl(160, 84%, 49%);
+}
+.darkmode .cards .expenses {
+  background: linear-gradient(to bottom, hsl(215, 25%, 14%), rgba(239.7, 66.3, 66.3, 0.15));
+  border-color: rgba(239.7, 66.3, 66.3, 0.3);
+}
+.darkmode .cards .expenses h4 {
+  color: hsl(0, 85%, 70%);
+}
+.darkmode .cards .expenses p {
+  color: hsl(0, 85%, 70%);
+}
+.darkmode .cards .balance {
+  background: linear-gradient(to bottom, hsl(215, 25%, 14%), rgba(41.82, 109.14, 243.78, 0.15));
+  border-color: rgba(41.82, 109.14, 243.78, 0.3);
+}
+.darkmode .cards .balance h4 {
+  color: hsl(220, 90%, 66%);
+}
+.darkmode .cards .balance p {
+  color: hsl(220, 90%, 66%);
+}
+.darkmode .filters .search-filter .input-wrapper .input {
+  background-color: hsl(215, 25%, 14%);
+  border-color: hsl(215, 20%, 22%);
+  color: hsl(210, 20%, 95%);
+}
+.darkmode .filters .search-filter .input-wrapper .search-icon {
+  filter: invert(0);
+}
+.darkmode .filters .category-filter select {
+  background-color: hsl(215, 25%, 14%);
+  border-color: hsl(215, 20%, 22%);
+  color: hsl(210, 20%, 95%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+.darkmode .tableOne #transactionsTable thead {
+  background-color: hsl(215, 25%, 14%);
+  border-bottom: 1px solid hsl(215, 20%, 22%);
+}
+.darkmode .tableOne #transactionsTable tbody {
+  background-color: hsl(215, 25%, 14%);
+}
+.darkmode .tableOne #transactionsTable tbody tr:hover {
+  background-color: rgba(5.1, 134.3, 198.9, 0.15);
+}
+.darkmode .tableOne #transactionsTable th, .darkmode .tableOne #transactionsTable td {
+  color: hsl(210, 20%, 95%);
+  border-bottom-color: hsl(215, 20%, 22%);
+}
+.darkmode .tableOne #transactionsTable .empty-state-cell .empty-content h3 {
+  color: hsl(210, 20%, 95%) !important;
+}
+.darkmode .tableOne #transactionsTable .empty-state-cell .empty-content p {
+  color: hsl(215, 15%, 65%);
+}
+.darkmode .popup .popup-content {
+  background-color: hsl(215, 25%, 14%);
+  border-color: hsl(215, 20%, 22%);
+  color: hsl(210, 20%, 95%);
+}
+.darkmode .popup .popup-content h2 {
+  color: #ffffff;
+}
+.darkmode .popup .popup-content label {
+  color: #ffffff;
+}
+.darkmode .popup .popup-content input, .darkmode .popup .popup-content select, .darkmode .popup .popup-content textarea {
+  background-color: hsl(215, 28%, 10%);
+  border-color: hsl(215, 20%, 22%);
+  color: hsl(210, 20%, 95%);
+}
+.darkmode .popup .popup-content select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+.darkmode .popup .popup-content .error-text {
+  color: hsl(0, 85%, 70%);
+}
+.darkmode .popup .popup-content input.has-error, .darkmode .popup .popup-content select.has-error {
+  border-color: hsl(0, 85%, 70%);
+}
+.darkmode .popup .popup-content input.has-error:focus, .darkmode .popup .popup-content select.has-error:focus {
+  border-color: hsl(0, 85%, 70%);
+  box-shadow: 0 0 0 3px rgba(243.525, 113.475, 113.475, 0.1);
+}
+.darkmode .popup .popup-content input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.container {
+  display: flex;
+}
+
+.header, .cards, .filters, .tableOne, .addRow, .chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 40px;
+}
+
+.header {
+  margin-bottom: 50px;
+  padding: 16px 40px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-bottom: 1px solid hsl(214, 20%, 88%);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header .header-text h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(to right, hsl(200, 95%, 40%), hsl(160, 60%, 50%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+.header .mode-icon #theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid hsl(214, 20%, 88%);
+  background-color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header .mode-icon #theme-switch:hover {
+  background-color: hsl(215, 25%, 12%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+}
+.header .mode-icon #theme-switch:hover svg {
+  fill: hsl(210, 20%, 98%);
+}
+.header .mode-icon #theme-switch svg {
+  fill: hsl(215, 25%, 12%);
+  height: 24px;
+  width: 24px;
+  transition: fill 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header .mode-icon #theme-switch svg:last-child {
+  display: none;
+}
+
+.cards {
+  gap: 24px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.cards .card {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid hsl(214, 20%, 88%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
+.cards .card h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(215, 15%, 45%);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.cards .card p {
+  font-size: 32px;
+  font-weight: 700;
+}
+.cards .income {
+  border-color: rgba(15.912, 182.988, 127.296, 0.2);
+  background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(160, 70%, 94%));
+}
+.cards .income h4 {
+  color: hsl(160, 84%, 39%);
+}
+.cards .income p {
+  color: hsl(160, 84%, 39%);
+}
+.cards .income:hover {
+  border-color: rgba(15.912, 182.988, 127.296, 0.4);
+}
+.cards .expenses {
+  border-color: rgba(239.7, 66.3, 66.3, 0.2);
+  background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(0, 70%, 96%));
+}
+.cards .expenses h4 {
+  color: hsl(0, 85%, 60%);
+}
+.cards .expenses p {
+  color: hsl(0, 85%, 60%);
+}
+.cards .expenses:hover {
+  border-color: rgba(239.7, 66.3, 66.3, 0.4);
+}
+.cards .balance {
+  border-color: rgba(41.82, 109.14, 243.78, 0.2);
+  background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(220, 70%, 95%));
+}
+.cards .balance h4 {
+  color: hsl(220, 90%, 56%);
+}
+.cards .balance p {
+  color: hsl(220, 90%, 56%);
+}
+.cards .balance:hover {
+  border-color: rgba(41.82, 109.14, 243.78, 0.4);
+}
+
+.filters {
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.filters .search-filter {
+  flex: 1;
+}
+.filters .search-filter .input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.filters .search-filter .input-wrapper .input {
+  width: 100%;
+  height: 44px;
+  padding-left: 40px;
+  border-radius: 8px;
+  border: 1px solid hsl(214, 20%, 88%);
+  font-size: 14px;
+  background-color: hsl(0, 0%, 100%);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.filters .search-filter .input-wrapper .input:focus {
+  border-color: hsl(200, 95%, 40%);
+  box-shadow: 0 0 0 3px rgba(5.1, 134.3, 198.9, 0.1);
+}
+.filters .search-filter .input-wrapper .input::-moz-placeholder {
+  color: hsl(215, 15%, 45%);
+}
+.filters .search-filter .input-wrapper .input::placeholder {
+  color: hsl(215, 15%, 45%);
+}
+.filters .search-filter .input-wrapper .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  filter: invert(1);
+}
+.filters .category-filter {
+  display: flex;
+  gap: 12px;
+}
+.filters .category-filter select {
+  min-width: 180px;
+  height: 44px;
+  border: 1px solid hsl(214, 20%, 88%);
+  border-radius: 8px;
+  background-color: hsl(0, 0%, 100%);
+  font-size: 14px;
+  padding: 0 36px 0 12px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.filters .category-filter select:hover {
+  border-color: hsl(200, 95%, 40%);
+}
+.filters .category-filter select:focus {
+  border-color: hsl(200, 95%, 40%);
+  box-shadow: 0 0 0 3px rgba(5.1, 134.3, 198.9, 0.1);
+}
+
+.buttons {
+  margin-bottom: 32px;
+}
+.buttons .filter-buttons {
+  display: flex;
+  gap: 12px;
+}
+.buttons .filter-buttons button {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.buttons .filter-buttons button:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.buttons .filter-buttons button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.buttons .filter-buttons .clear button {
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(215, 25%, 12%);
+  border: 1px solid hsl(214, 20%, 88%);
+}
+.buttons .filter-buttons .clear button:hover:not(.disabled) {
+  background-color: hsl(215, 25%, 12%);
+  color: hsl(210, 20%, 98%);
+}
+.buttons .filter-buttons .add-selected button {
+  background-color: hsl(160, 84%, 39%);
+  color: white;
+}
+.buttons .filter-buttons .add-selected button:hover:not(.disabled) {
+  background-color: hsl(160, 84%, 45%);
+}
+.buttons .filter-buttons .remove-selected button {
+  background-color: hsl(0, 85%, 60%);
+  color: white;
+}
+.buttons .filter-buttons .remove-selected button:hover:not(.disabled) {
+  background-color: hsl(0, 85%, 65%);
+}
+.buttons .filter-buttons .edit-selected button {
+  background-color: hsl(220, 90%, 56%);
+  color: white;
+}
+.buttons .filter-buttons .edit-selected button:hover:not(.disabled) {
+  background-color: hsl(220, 90%, 60%);
+}
+
+.tableOne {
+  margin-bottom: 50px;
+}
+.tableOne #transactionsTable {
+  width: 100%;
+  border-radius: 12px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid hsl(214, 20%, 88%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.tableOne #transactionsTable .selected {
+  background-color: rgba(5.1, 134.3, 198.9, 0.1) !important;
+}
+.tableOne #transactionsTable thead {
+  background-color: rgba(97.5375, 111.88125, 131.9625, 0.05);
+}
+.tableOne #transactionsTable thead th {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: hsl(215, 15%, 45%);
+}
+.tableOne #transactionsTable tbody {
+  background-color: hsl(0, 0%, 100%);
+}
+.tableOne #transactionsTable tbody tr {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tableOne #transactionsTable tbody tr:hover {
+  cursor: pointer;
+  background-color: rgba(5.1, 134.3, 198.9, 0.05);
+}
+.tableOne #transactionsTable th, .tableOne #transactionsTable td {
+  border-bottom: 1px solid hsl(214, 20%, 88%);
+  text-align: left;
+  padding: 16px 12px;
+}
+.tableOne #transactionsTable th:first-child, .tableOne #transactionsTable td:first-child {
+  padding-left: 24px;
+}
+.tableOne #transactionsTable th:last-child, .tableOne #transactionsTable td:last-child {
+  padding-right: 24px;
+  border-right: none;
+}
+.tableOne #transactionsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+.tableOne #transactionsTable .empty-state-row:hover {
+  background-color: transparent !important;
+  cursor: default !important;
+}
+.tableOne #transactionsTable .empty-state-row .empty-state-cell {
+  padding: 40px;
+  text-align: center;
+  border-bottom: none;
+}
+.tableOne #transactionsTable .empty-state-row .empty-state-cell .empty-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsl(215, 25%, 12%);
+  margin-bottom: 6px;
+}
+.tableOne #transactionsTable .empty-state-row .empty-state-cell .empty-content p {
+  font-size: 14px;
+  color: hsl(215, 15%, 45%);
+  margin-bottom: 0;
+}
+
+.chart-wrapper {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+#chart-container {
+  width: 100%;
+  height: 700px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 12px;
+  padding: 0.1px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid hsl(214, 20%, 88%);
+  overflow: hidden;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+}
+.popup .popup-content {
+  background-color: hsl(0, 0%, 100%);
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid hsl(214, 20%, 88%);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+.popup .popup-content h2 {
+  margin-bottom: 24px;
+  color: hsl(215, 25%, 12%);
+}
+.popup .popup-content .close {
+  color: hsl(215, 15%, 45%);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.popup .popup-content .close:hover, .popup .popup-content .close:focus {
+  color: hsl(215, 25%, 12%);
+}
+.popup .popup-content label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: hsl(215, 25%, 12%);
+}
+.popup .popup-content input, .popup .popup-content select, .popup .popup-content textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid hsl(214, 20%, 88%);
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: hsl(0, 0%, 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.popup .popup-content input:focus, .popup .popup-content select:focus, .popup .popup-content textarea:focus {
+  outline: none;
+  border-color: hsl(200, 95%, 40%);
+  box-shadow: 0 0 0 3px rgba(5.1, 134.3, 198.9, 0.1);
+}
+.popup .popup-content select {
+  padding: 10px 40px 10px 12px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.popup .popup-content .error-text {
+  display: block;
+  color: hsl(0, 85%, 60%);
+  font-size: 12px;
+  min-height: 18px;
+  margin-bottom: 8px;
+}
+.popup .popup-content input.has-error, .popup .popup-content select.has-error {
+  border-color: hsl(0, 85%, 60%);
+}
+.popup .popup-content input.has-error:focus, .popup .popup-content select.has-error:focus {
+  border-color: hsl(0, 85%, 60%);
+  box-shadow: 0 0 0 3px rgba(239.7, 66.3, 66.3, 0.1);
+}
+.popup .popup-content textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.popup .popup-content .actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.popup .popup-content .actions button {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.popup .popup-content .actions button:first-child {
+  background-color: hsl(200, 95%, 40%);
+  color: white;
+}
+.popup .popup-content .actions button:first-child:hover {
+  background-color: hsl(200, 95%, 50%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(5.1, 134.3, 198.9, 0.3);
+}
+.popup .popup-content .actions button:last-child {
+  background-color: hsl(215, 15%, 50%);
+  color: white;
+  border: none;
+}
+.popup .popup-content .actions button:last-child:hover {
+  background-color: hsl(215, 15%, 40%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#addTransactionForm,
+#editTransactionForm,
+#removeTransactionForm {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-core.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-pie.min.js"></script>
+  <script src="Script/script.js"></script>
+  <title>Personal Finance Tracker</title>
+  
+  <!-- Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Personal Finance Tracker">
+  <meta property="og:description" content="Track your income, expenses, and manage your personal finances with ease.">
+  <meta property="og:image" content="Images/banner.png">
+</head>
+
+
+<body id="body">
+
+
+  <div class="header container">
+    <div class="header-text">
+      <h1>Personal Finance Tracker</h1>
+    </div>
+    <div class="mode-icon">
+      <button id="theme-switch" onclick="darkModeFunction()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+          <path
+            d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+          <path
+            d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="filters buttons container">
+    <div class="search-filter">
+      <div class="input-wrapper">
+        <img src="Images/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="search icon" class="search-icon">
+        <input class="input" placeholder="Search transactions...">
+      </div>
+    </div>
+    <div class="category-filter">
+      <select name="type" id="type">
+        <option value="ignore">Search by Type</option>
+        <option value="Expenses">Expense</option>
+        <option value="Income">Income</option>
+      </select>
+    
+      <select name="categories" id="categories">
+        <!-- It's being populated in the scipt.js -->
+      </select>
+    
+      <select name="amount" id="amount">
+        <option value="ignore">Filter Options</option>
+        <option value="ascAmount">Sort by Ascending Amount</option>
+        <option value="descAmount">Sort by Descending Amount</option>
+      </select>
+    </div>
+    
+    <div class="filter-buttons">
+      <div class="clear">
+        <button class="disabled" id="clearBtn">Clear All</button>
+      </div>
+      <div class="add-selected">
+        <button class="disabled" id="addBtn">Add Transaction</button>
+      </div>
+      <div class="remove-selected">
+        <button class="disabled" id="removeBtn">Remove Selected</button>
+      </div>
+      <div class="edit-selected">
+        <button class="disabled" id="editBtn">Edit Selected</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tableOne container">
+    <table id="transactionsTable">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Description</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Rows will be inserted here dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <div id="popup" class="popup">
+    <div class="popup-content">
+
+        <h2 id="popupTitle">Popup Title</h2>
+        
+        <form id="addTransactionForm">
+            <label for="type">Type:</label>
+            <select id="addPopupType">
+                <option value="" disabled selected>Select Type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <span id="addTypeError" class="error-text"></span>
+            
+            <label for="amount">Amount:</label>
+            <input id="addPopupAmount" type="text" placeholder="Amount">
+            <span id="addAmountError" class="error-text"></span>
+            
+            <label for="category">Category:</label>
+            <select id="addPopupCategory">
+          <!-- Rows will be inserted here dynamically -->
+            </select>
+            <span id="addCategoryError" class="error-text"></span>
+            
+            <label for="date">Date:</label>
+            <input id="addPopupDate" type="date">
+            <span id="addDateError" class="error-text"></span>
+            
+            <label for="description">Description (Optional):</label>
+            <textarea id="addPopupDescription" placeholder="Description"></textarea>
+            <div class="actions">
+                <button type="button" onclick="addButton()">Confirm</button>
+                <button type="button" onclick="closePopup()">Cancel</button>
+            </div>
+        </form>
+
+        <form id="editTransactionForm">
+          <label for="type">Type:</label>
+          <select id="popupType">
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+          </select>
+          <span id="editTypeError" class="error-text"></span>
+          
+          <label for="amount">Amount:</label>
+          <input id="popupAmount" type="text" placeholder="Amount">
+          <span id="editAmountError" class="error-text"></span>
+          
+          <label for="category">Category:</label>
+          <select id="popupCategory">
+          <!-- Rows will be inserted here dynamically -->
+          </select>
+          <span id="editCategoryError" class="error-text"></span>
+          
+          <label for="date">Date:</label>
+          <input id="popupDate" type="date">
+          <span id="editDateError" class="error-text"></span>
+          
+          <label for="description">Description (Optional):</label>
+          <textarea id="popupDescription" placeholder="Description"></textarea>
+          <div class="actions">
+              <button type="button" onclick="confirmEdit()">Confirm</button>
+              <button type="button" onclick="closePopup()">Cancel</button>
+          </div>
+        </form>
+
+        <div id="removeTransactionForm">
+            <p id="confirmationText">Are you sure you want to proceed?</p>
+            <div class="actions">
+                <button id="confirmAction" type="button">Yes</button>
+                <button type="button" onclick="closePopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="cards container">
+    <div class="card income">
+      <h4>Total income</h4>
+      <!-- Math is done dynamically -->
+    </div>
+    <div class="card balance">
+      <h4>Balance</h4>
+      <!-- Math is done dynamically -->
+    </div>
+    <div class="card expenses">
+      <h4>Total Expenses</h4>
+      <!-- Math is done dynamically -->
+    </div>
+  </div>
+
+  <div class="chart-wrapper container">
+    <div id="chart-container"></div>
+  </div>
+
+</body>
+</html>
