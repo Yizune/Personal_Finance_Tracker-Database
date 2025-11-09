@@ -7,9 +7,13 @@ let editTransactionId = null;
 let settings = {};
 let transactions = [];
 
+const getBaseUrl = () => {
+    return window.location.origin;
+};
+
 async function loadCategories() {
     try {
-        const response = await fetch("http://localhost:5002/categories");
+        const response = await fetch(`${getBaseUrl()}/categories`);
         if (!response.ok) {
             throw new Error("Failed to fetch categories");
         }
@@ -61,7 +65,7 @@ document.addEventListener("DOMContentLoaded", loadCategories);
 
 async function loadFromDataBase() {
     try {
-        const response = await fetch('http://localhost:5002/transactions');
+        const response = await fetch(`${getBaseUrl()}/transactions`);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
@@ -196,7 +200,7 @@ async function addButton() {
 
         const amount = parseFloat(amountInput);
 
-        const response = await fetch('http://localhost:5002/transactions', {
+        const response = await fetch(`${getBaseUrl()}/transactions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -240,7 +244,7 @@ async function confirmEdit() {
 
         const amount = parseFloat(amountInput);
 
-        const response = await fetch(`http://localhost:5002/transactions/${editTransactionId}`, {
+        const response = await fetch(`${getBaseUrl()}/transactions/${editTransactionId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -275,7 +279,7 @@ async function confirmEdit() {
             console.error("Transaction not found in array!");
         }
 
-        const refreshResponse = await fetch('http://localhost:5002/transactions');
+        const refreshResponse = await fetch(`${getBaseUrl()}/transactions`);
         if (!refreshResponse.ok) {
             throw new Error(`Response status: ${refreshResponse.status}`);
         }
@@ -322,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const confirmDelete = confirm(confirmMessage);
             if (!confirmDelete) return;
     
-            const response = await fetch("http://localhost:5002/transactions", {
+            const response = await fetch(`${getBaseUrl()}/transactions`, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ids }),
@@ -390,7 +394,7 @@ async function masterFilter() {
     if (amount !== "ignore") {
         try {
             const sort = amount === "ascAmount" ? "asc" : "desc";
-            const response = await fetch(`http://localhost:5002/transactions?sort=${sort}`);
+            const response = await fetch(`${getBaseUrl()}/transactions?sort=${sort}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch sorted transactions");
             }
@@ -430,7 +434,7 @@ async function darkModeFunction() {
             element.classList.remove("darkmode");
         }
 
-        const response = await fetch('http://localhost:5002/settings', {
+        const response = await fetch(`${getBaseUrl()}/settings`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ darkMode }),
@@ -454,7 +458,7 @@ async function darkModeFunction() {
 async function loadDarkMode() {
     try {
         const element = document.getElementById("body");
-        const response = await fetch('http://localhost:5002/settings');
+        const response = await fetch(`${getBaseUrl()}/settings`);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }

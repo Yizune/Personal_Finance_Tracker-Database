@@ -1,6 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({ path: './config/.env' });
 const mongoose = require('mongoose');
-const uri = process.env.MONGODB_URI || process.env.mongo;
+const uri = process.env.mongo;
 console.log("Connecting to:", uri ? "MongoDB URI found" : "undefined"); // Don't log the actual URI for security
 const clientOptions = { serverApi: { version: '1', strict: false, deprecationErrors: true } };
 async function connectDB() {
