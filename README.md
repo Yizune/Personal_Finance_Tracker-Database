@@ -12,7 +12,7 @@ npm install
 
 # Step 4: Configure environment variables.
 # Create a .env file in the config folder with your MongoDB connection string:
-# mongo=your_mongodb_connection_string
+# MONGODB_URI=your_mongodb_connection_string
 
 # Step 5: Start the development server.
 npm start

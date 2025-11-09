@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const PORT = 5002;
+const PORT = process.env.PORT || 5002;
 require('dotenv').config();
 
 const path = require('path');
@@ -16,6 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 const connectDB = require('./config/connection.js');
+
+// Connect to database
 connectDB();
 
 // Getting access to the routes (which then gets access to the controller)
@@ -28,9 +30,15 @@ app.use('/settings', settingsRoutes);
 const categoriesRoutes = require('./routes/categoriesRoutes');
 app.use('/categories', categoriesRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-});
+// Only start server if not in Vercel serverless environment
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Legacy server listening on port ${PORT}`);
+    });
+}
 
 console.log('The script is running successfully');
+
+// Export for Vercel serverless
+module.exports = app;
 
