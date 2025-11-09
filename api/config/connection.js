@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './config/.env' });
+require('dotenv').config({ path: './api/config/.env' });
 const mongoose = require('mongoose');
 const uri = process.env.mongo;
 console.log("Connecting to:", uri ? "MongoDB URI found" : "undefined"); // Don't log the actual URI for security

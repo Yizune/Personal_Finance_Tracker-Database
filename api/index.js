@@ -15,20 +15,24 @@ app.use('/Script', express.static(path.join(__dirname, 'Script')));
 app.use(cors());
 app.use(express.json());
 
-const connectDB = require('./api/config/connection.js');
+const connectDB = require('./config/connection.js');
 
 // Connect to database
 connectDB();
 
 // Getting access to the routes (which then gets access to the controller)
-const transactionRoutes = require('./api/routes/transactionRoutes.js');
+const transactionRoutes = require('./routes/transactionRoutes');
 app.use('/transactions', transactionRoutes);
 
-const settingsRoutes = require('./api/routes/settingsRoutes.js');
+const settingsRoutes = require('./routes/settingsRoutes');
 app.use('/settings', settingsRoutes);
 
-const categoriesRoutes = require('./api/routes/categoriesRoutes.js');
+const categoriesRoutes = require('./routes/categoriesRoutes');
 app.use('/categories', categoriesRoutes);
+
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 
 // Only start server if not in Vercel serverless environment
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
